@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/syllo
+    username: postgres
+    password: anshul123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
