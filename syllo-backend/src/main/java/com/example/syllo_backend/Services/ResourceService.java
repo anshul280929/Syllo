@@ -105,4 +105,12 @@ public class ResourceService {
                 .filter(r -> r.getSubject().getId().equals(subjectId))
                 .toList();
     }
+    //Search Service
+    public List<SubjectResource> globalSearch(String keyword, String userEmail) {
+
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return resourceRepository.searchUserResources(user.getId(), keyword);
+    }
 }

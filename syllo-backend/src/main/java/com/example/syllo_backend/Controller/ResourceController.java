@@ -54,4 +54,13 @@ public class ResourceController {
         String email = authentication.getName();
         return resourceService.getResources(subjectId, email);
     }
+
+    // ⭐ GLOBAL SEARCH ENDPOINT
+    @GetMapping("/search")
+    public List<SubjectResource> search(@RequestParam String keyword,
+                                        Authentication authentication) {
+
+        String email = authentication.getName();
+        return resourceService.globalSearch(keyword, email);
+    }
 }
