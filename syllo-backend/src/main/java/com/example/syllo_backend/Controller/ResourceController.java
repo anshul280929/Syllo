@@ -45,16 +45,6 @@ public class ResourceController {
                 email
         );
     }
-
-    // ✅ Get subject resources
-    @GetMapping("/{subjectId}")
-    public List<SubjectResource> list(@PathVariable Long subjectId,
-                                      Authentication authentication) {
-
-        String email = authentication.getName();
-        return resourceService.getResources(subjectId, email);
-    }
-
     // ⭐ GLOBAL SEARCH ENDPOINT
     @GetMapping("/search")
     public List<SubjectResource> search(@RequestParam String keyword,
@@ -62,5 +52,19 @@ public class ResourceController {
 
         String email = authentication.getName();
         return resourceService.globalSearch(keyword, email);
+    }
+    // ✅ Get subject resources
+    @GetMapping("/subject/{subjectId}")
+    public List<SubjectResource> list(@PathVariable Long subjectId,
+                                      Authentication authentication) {
+
+        String email = authentication.getName();
+        return resourceService.getResources(subjectId, email);
+    }
+
+
+    @GetMapping("/debug-user")
+    public String debug(Authentication auth) {
+        return auth.getName();
     }
 }
